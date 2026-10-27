@@ -1,13 +1,17 @@
 from philosophers import Philosopher
+from attack import Attack
 
 
 class Argument:
-    def __init__(self, philosopher, name, description, refutes=None, former_arg=None):
+    def __init__(self, philosopher: Philosopher, name: str, description: str, former_arg: "Argument" = None, attack: Attack = None, attack_arg: "Argument" = None):
         self.philosopher = philosopher
         self.argument_name = name
         self.__description = description
-        self.__refutes = refutes
         self.__former_arg = former_arg
+        if (attack is None and attack_arg is not None) or (attack_arg is None and attack is not None):
+            raise ValueError("The attack and the attack_arg should be filled together")
+        self.__attack = attack
+        self.__attack_arg = attack_arg
 
     def __str__(self):
         if self.__former_arg is None:
@@ -17,11 +21,11 @@ class Argument:
         else:
             return f"The {self.argument_name} argument of {self.philosopher.name}, which is based on his former {self.__former_arg.argument_name} argument, is: {self.__description}"
 
-    def refute_arg(self):
-        if self.__refutes is None:
-            return f"The {self.argument_name} argument doesn't refute any other argument"
+    def attack_arg(self):
+        if self.__attack is None:
+            return f"The {self.argument_name} argument doesn't attack any other argument"
         else:
-            return f"The {self.argument_name} argument refutes the {self.__refutes.argument_name} argument of {self.__refutes.philosopher.name}"
+            return f"The {self.argument_name} argument {self.__attack.value} the {self.__attack_arg.argument_name} argument of {self.__attack_arg.philosopher.name}"
 
 
 if __name__ == "__main__":
@@ -48,5 +52,5 @@ if __name__ == "__main__":
                                                                  "thinking substance, and that the self is nothing more than a bundle of "
                                                                  "perceptions in constant flux. This challenges Descartes, who inferred from "
                                                                  "'I think' the existence of a thinking thing: experience reveals the thoughts, "
-                                                                 "but never the thinker behind them.", refutes=cogito)
-    print(theory_of_self.refute_arg())
+                                                                 "but never the thinker behind them.", attack=Attack.CHALLENGES, attack_arg=cogito)
+    print(theory_of_self.attack_arg())

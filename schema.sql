@@ -24,8 +24,9 @@ CREATE TABLE IF NOT EXISTS arg_connection (
     id INTEGER PRIMARY KEY,
     relation_type TEXT NOT NULL CHECK(relation_type IN ('based_on', 'challenges', 'refutes')),
     source_arg_id INTEGER NOT NULL,
-    target_arg_id INTEGER NOT NULL CHECK(target_arg_id != source_arg_id),
+    target_arg_id INTEGER NOT NULL,
     FOREIGN KEY (source_arg_id) REFERENCES argument (id) ON DELETE CASCADE,
     FOREIGN KEY (target_arg_id) REFERENCES argument (id) ON DELETE CASCADE,
-    UNIQUE(relation_type, source_arg_id, target_arg_id)
+    UNIQUE(relation_type, source_arg_id, target_arg_id),
+    CHECK(target_arg_id != source_arg_id)
 );

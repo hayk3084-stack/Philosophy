@@ -18,8 +18,8 @@ class Philosopher(Base):
     birth_year: Mapped[int]
     death_year: Mapped[int]
     catch_phrase: Mapped[str | None]
-    arguments: Mapped[list["Argument"]] = relationship(back_populates="philosopher")
-    writings: Mapped[list["Writing"]] = relationship(back_populates="philosopher")
+    arguments: Mapped[list["Argument"]] = relationship(back_populates="philosopher", passive_deletes=True)
+    writings: Mapped[list["Writing"]] = relationship(back_populates="philosopher", passive_deletes=True)
 
     __table_args__ = (
         CheckConstraint("birth_year <= death_year", name="valid_life"),
@@ -32,12 +32,12 @@ class Argument(Base):
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str]
     description: Mapped[str]
-    philosopher_id: Mapped[int] = mapped_column(ForeignKey("philosopher.id"))
+    philosopher_id: Mapped[int] = mapped_column(ForeignKey("philosopher.id", ondelete="CASCADE"))
     philosopher: Mapped["Philosopher"] = relationship(back_populates="arguments", foreign_keys=[philosopher_id])
     writing_id: Mapped[Optional[int]] = mapped_column()
     writing: Mapped[Optional["Writing"]] = relationship(back_populates="arguments", foreign_keys=[writing_id])
-    incoming: Mapped[list["ArgumentsConnection"]] = relationship(back_populates="target_arg", foreign_keys="ArgumentsConnection.target_arg_id")
-    outgoing: Mapped[list["ArgumentsConnection"]] = relationship(back_populates="source_arg", foreign_keys="ArgumentsConnection.source_arg_id")
+    incoming: Mapped[list["ArgumentsConnection"]] = relationship(back_populates="target_arg", foreign_keys="ArgumentsConnection.target_arg_id", passive_deletes=True)
+    outgoing: Mapped[list["ArgumentsConnection"]] = relationship(back_populates="source_arg", foreign_keys="ArgumentsConnection.source_arg_id", passive_deletes=True)
 
     __table_args__ = (
         UniqueConstraint("philosopher_id", "name", name="unique_argument_per_philosopher"),
@@ -58,7 +58,7 @@ class Writing(Base):
     title: Mapped[str]
     kind: Mapped[str]
     publish_year: Mapped[int]
-    philosopher_id: Mapped[int] = mapped_column(ForeignKey("philosopher.id"))
+    philosopher_id: Mapped[int] = mapped_column(ForeignKey("philosopher.id", ondelete="CASCADE"))
     philosopher: Mapped["Philosopher"] = relationship(back_populates="writings")
     arguments: Mapped[list["Argument"]] = relationship(back_populates="writing", foreign_keys="Argument.writing_id")
 
@@ -80,8 +80,8 @@ class ArgumentsConnection(Base):
 
     id: Mapped[int] = mapped_column(primary_key=True)
     relation_type: Mapped[str]
-    source_arg_id: Mapped[int] = mapped_column(ForeignKey("argument.id"))
-    target_arg_id: Mapped[int] = mapped_column(ForeignKey("argument.id"))
+    source_arg_id: Mapped[int] = mapped_column(ForeignKey("argument.id", ondelete="CASCADE"))
+    target_arg_id: Mapped[int] = mapped_column(ForeignKey("argument.id", ondelete="CASCADE"))
     target_arg: Mapped["Argument"] = relationship(back_populates="incoming", foreign_keys=[target_arg_id])
     source_arg: Mapped["Argument"] = relationship(back_populates="outgoing", foreign_keys=[source_arg_id])
 

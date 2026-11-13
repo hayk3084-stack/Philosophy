@@ -1,9 +1,9 @@
 from typing import Optional
 
-from sqlalchemy import CheckConstraint, ForeignKey, ForeignKeyConstraint, UniqueConstraint, select
-from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, Session, relationship
+from sqlalchemy import CheckConstraint, ForeignKey, ForeignKeyConstraint, UniqueConstraint
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
 
-from database import engine
+
 
 
 class Base(DeclarativeBase):
@@ -97,20 +97,3 @@ class ArgumentsConnection(Base):
         return f"{self.source_arg.name} {RELATION_PHRASES[self.relation_type]} {self.target_arg.name}"
 
 
-if __name__ == "__main__":
-    Base.metadata.create_all(engine)
-
-    with Session(engine) as session:
-        descartes = Philosopher(name="René Descartes", country="France", birth_year=1596, death_year=1650, school="Rationalism", catch_phrase="I think therefore I am")
-        meditation = Writing(title="Meditation", kind="book", publish_year=1641, philosopher=descartes)
-        senses_argument = Argument(name="Senses argument", writing=meditation, philosopher=descartes, description="Descartes' first argument for doubt rests on the unreliability of the senses. Everything he had accepted as most true came to him through the senses, yet the senses have sometimes deceived him. Since it is unwise to fully trust anything that has deceived us even once, he concludes that beliefs based on the senses cannot be accepted as certain.")
-        dream_argument = Argument(name="Dream argument", writing=meditation, philosopher=descartes, description="The dream argument pushes the doubt further. Even if the senses sometimes deceive us about distant or small things, it seems certain that I am sitting here by the fire, holding this paper. Yet he recalls that in dreams he has been just as convinced of such things while actually lying in bed. Since there are no certain signs by which waking can be distinguished from dreaming, he cannot be sure he is not dreaming right now, and so even his most immediate sensory experiences cannot be accepted as certain.")
-        dream_sense_connection = ArgumentsConnection(relation_type="based_on", target_arg=senses_argument, source_arg=dream_argument)
-        session.add_all([descartes, senses_argument, dream_argument, meditation, dream_sense_connection])
-
-        session.commit()
-
-        found_book = session.scalar(select(Writing).where(Writing.title == "Meditation"))
-        for argument in found_book.arguments:
-            for rel in argument.outgoing:
-                print(rel)

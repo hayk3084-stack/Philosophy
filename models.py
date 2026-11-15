@@ -27,6 +27,12 @@ class Philosopher(Base):
         CheckConstraint("birth_year <= death_year", name="valid_life"),
     )
 
+    def __str__(self):
+        return f"{self.name} from the school {self.school}"
+
+    def quote(self):
+        return f"As {self.name} from {self.country} always says: {self.catch_phrase}"
+
 
 class Argument(Base):
     __tablename__ = "argument"

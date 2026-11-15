@@ -52,6 +52,18 @@ WRITINGS = [
         "publish_year": 1690,
         "philosopher": "John Locke",
     },
+    {
+        "title": "A Treatise of Human Nature",
+        "kind": "book",
+        "publish_year": 1739,
+        "philosopher": "David Hume",
+    },
+    {
+        "title": "An Enquiry Concerning Human Understanding",
+        "kind": "book",
+        "publish_year": 1748,
+        "philosopher": "David Hume",
+    },
 ]
 
 ARGUMENTS = [
@@ -66,6 +78,12 @@ ARGUMENTS = [
         "writing": "Meditations",
         "philosopher": "René Descartes",
         "description": "The dream argument pushes the doubt further. Even if the senses sometimes deceive us about distant or small things, it seems certain that I am sitting here by the fire, holding this paper. Yet he recalls that in dreams he has been just as convinced of such things while actually lying in bed. Since there are no certain signs by which waking can be distinguished from dreaming, he cannot be sure he is not dreaming right now, and so even his most immediate sensory experiences cannot be accepted as certain.",
+    },
+    {
+        "name": "Cogito argument",
+        "writing": "Meditations",
+        "philosopher": "René Descartes",
+        "description": "In the Second Meditation, after doubting the senses, the body and even mathematics, Descartes looks for one thing that cannot be doubted. Even if an all-powerful deceiver deceives him in everything, he must exist in order to be deceived: as long as he thinks he is something, he cannot be nothing. The proposition 'I am, I exist' is therefore necessarily true whenever he conceives it. He then asks what this 'I' is and answers that it is a thinking thing: a thing that doubts, understands, affirms, denies, wills and imagines. This first certainty becomes the foundation on which he rebuilds knowledge.",
     },
     {
         "name": "Error argument",
@@ -115,6 +133,30 @@ ARGUMENTS = [
         "philosopher": "John Locke",
         "description": "In Book II, chapter 8, Locke distinguishes between qualities of bodies. Primary qualities, such as solidity, extension, figure, motion and number, are inseparable from a body however it is divided, and our ideas of them resemble the qualities in the body. Secondary qualities, such as colours, sounds, tastes and smells, are nothing in the bodies themselves but powers to produce sensations in us through their primary qualities. Our ideas of secondary qualities therefore do not resemble anything in the objects: the same water can feel hot to one hand and cold to the other, but it cannot be both at once.",
     },
+    {
+        "name": "Hume's copy principle",
+        "writing": "A Treatise of Human Nature",
+        "philosopher": "David Hume",
+        "description": "Hume divides all perceptions of the mind into impressions, which are lively and forceful (sensations, passions, emotions), and ideas, which are their faint copies in thinking and reasoning. Every simple idea is derived from a simple impression that it exactly resembles, and the impression always comes first: a person born blind has no idea of colour. Complex ideas are built from simple ones, so the test of any philosophical term is to ask from what impression its idea is derived. Even the idea of God arises from reflecting on the operations of our own mind and augmenting its qualities of goodness and wisdom without limit.",
+    },
+    {
+        "name": "Hume's fork",
+        "writing": "An Enquiry Concerning Human Understanding",
+        "philosopher": "David Hume",
+        "description": "In Section IV of the Enquiry Hume divides all objects of human reason into two kinds. Relations of ideas, such as the truths of geometry and arithmetic, are discovered by thought alone and their denial implies a contradiction, but they say nothing about what exists. Matters of fact, such as that the sun will rise tomorrow, can be denied without contradiction and can only be known through experience. There is no third kind: no truth about what exists can be demonstrated by reason alone, and any claim that is neither a relation of ideas nor grounded in experience should be committed to the flames.",
+    },
+    {
+        "name": "Hume's critique of causation",
+        "writing": "A Treatise of Human Nature",
+        "philosopher": "David Hume",
+        "description": "Hume asks from what impression we derive the idea of a necessary connection between cause and effect. In any single case we observe only that one event is contiguous with and prior to another, never a power or necessity linking them. The connection cannot be known a priori either, since the denial of any causal claim implies no contradiction: anything may produce anything. After observing a constant conjunction of two kinds of events, the mind is carried by custom to expect one when it sees the other. The idea of necessary connection is copied from this internal feeling of expectation, not from anything in the objects. So causal inferences, and all reasoning from past to future, rest on habit rather than reason.",
+    },
+    {
+        "name": "Hume's bundle theory of the self",
+        "writing": "A Treatise of Human Nature",
+        "philosopher": "David Hume",
+        "description": "Some philosophers claim that we are intimately conscious of a self that is simple, identical and continuous over time. But if the idea of the self is real, it must come from some impression, and there is no constant impression of a self. When Hume enters most intimately into what he calls himself, he always stumbles on some particular perception, of heat or cold, light or shade, love or hatred, and never catches himself without a perception. The mind is therefore nothing but a bundle or collection of different perceptions that succeed one another with great rapidity, and the identity we ascribe to it is a fiction produced by the imagination.",
+    },
 ]
 
 CONNECTIONS = [
@@ -152,5 +194,45 @@ CONNECTIONS = [
         "source_arg": "Locke's primary and secondary qualities argument",
         "relation_type": "based_on",
         "target_arg": "Locke's origin of ideas argument",
+    },
+    {
+        "source_arg": "Hume's copy principle",
+        "relation_type": "based_on",
+        "target_arg": "Locke's origin of ideas argument",
+    },
+    {
+        "source_arg": "Hume's copy principle",
+        "relation_type": "challenges",
+        "target_arg": "Trademark argument",
+    },
+    {
+        "source_arg": "Hume's critique of causation",
+        "relation_type": "based_on",
+        "target_arg": "Hume's copy principle",
+    },
+    {
+        "source_arg": "Hume's critique of causation",
+        "relation_type": "based_on",
+        "target_arg": "Hume's fork",
+    },
+    {
+        "source_arg": "Hume's critique of causation",
+        "relation_type": "challenges",
+        "target_arg": "Trademark argument",
+    },
+    {
+        "source_arg": "Hume's bundle theory of the self",
+        "relation_type": "based_on",
+        "target_arg": "Hume's copy principle",
+    },
+    {
+        "source_arg": "Hume's bundle theory of the self",
+        "relation_type": "challenges",
+        "target_arg": "Cogito argument",
+    },
+    {
+        "source_arg": "Hume's bundle theory of the self",
+        "relation_type": "challenges",
+        "target_arg": "Real distinction argument",
     },
 ]

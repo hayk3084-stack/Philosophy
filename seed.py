@@ -47,7 +47,7 @@ def get_or_create_connection(session: Session, source_arg: Argument, relation_ty
         session.add(arg_connection)
         return arg_connection
     else:
-        print(f"The {source_arg.name} {RELATION_PHRASES[relation_type]} {target_arg.name} connection already exists")
+        print(f"Connection already exists: {source_arg.name} {RELATION_PHRASES[relation_type]} {target_arg.name}")
         return find_connection
 
 

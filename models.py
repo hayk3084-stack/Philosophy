@@ -1,5 +1,4 @@
 from enum import Enum
-from typing import Optional
 
 from sqlalchemy import CheckConstraint, Enum as SQLEnum, ForeignKey, ForeignKeyConstraint, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
@@ -40,9 +39,9 @@ class Argument(Base):
     name: Mapped[str]
     description: Mapped[str]
     philosopher_id: Mapped[int] = mapped_column(ForeignKey("philosopher.id", ondelete="CASCADE"))
-    philosopher: Mapped["Philosopher"] = relationship(back_populates="arguments", foreign_keys=[philosopher_id])
-    writing_id: Mapped[Optional[int]] = mapped_column()
-    writing: Mapped[Optional["Writing"]] = relationship(back_populates="arguments", foreign_keys=[writing_id])
+    philosopher: Mapped["Philosopher"] = relationship(back_populates="arguments")
+    writing_id: Mapped[int | None] = mapped_column()
+    writing: Mapped["Writing | None"] = relationship(back_populates="arguments", foreign_keys=[writing_id])
     incoming: Mapped[list["ArgumentsConnection"]] = relationship(back_populates="target_arg", foreign_keys="ArgumentsConnection.target_arg_id", passive_deletes=True)
     outgoing: Mapped[list["ArgumentsConnection"]] = relationship(back_populates="source_arg", foreign_keys="ArgumentsConnection.source_arg_id", passive_deletes=True)
 

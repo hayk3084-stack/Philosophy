@@ -31,6 +31,30 @@ PHILOSOPHERS = [
         "school": "Empiricism",
         "catch_phrase": "No man's knowledge here can go beyond his experience",
     },
+    {
+        "name": "Gottfried Wilhelm Leibniz",
+        "country": "Germany",
+        "birth_year": 1646,
+        "death_year": 1716,
+        "school": "Rationalism",
+        "catch_phrase": "This is the best of all possible worlds",
+    },
+    {
+        "name": "George Berkeley",
+        "country": "Ireland",
+        "birth_year": 1685,
+        "death_year": 1753,
+        "school": "Empiricism",
+        "catch_phrase": "To be is to be perceived",
+    },
+    {
+        "name": "Immanuel Kant",
+        "country": "Germany",
+        "birth_year": 1724,
+        "death_year": 1804,
+        "school": "Transcendental idealism",
+        "catch_phrase": "Thoughts without content are empty, intuitions without concepts are blind",
+    },
 ]
 
 WRITINGS = [
@@ -63,6 +87,30 @@ WRITINGS = [
         "kind": "book",
         "publish_year": 1748,
         "philosopher": "David Hume",
+    },
+    {
+        "title": "Discourse on Metaphysics",
+        "kind": "book",
+        "publish_year": 1846,
+        "philosopher": "Gottfried Wilhelm Leibniz",
+    },
+    {
+        "title": "New Essays on Human Understanding",
+        "kind": "book",
+        "publish_year": 1765,
+        "philosopher": "Gottfried Wilhelm Leibniz",
+    },
+    {
+        "title": "A Treatise Concerning the Principles of Human Knowledge",
+        "kind": "book",
+        "publish_year": 1710,
+        "philosopher": "George Berkeley",
+    },
+    {
+        "title": "Critique of Pure Reason",
+        "kind": "book",
+        "publish_year": 1781,
+        "philosopher": "Immanuel Kant",
     },
 ]
 
@@ -102,6 +150,12 @@ ARGUMENTS = [
         "writing": "Meditations",
         "philosopher": "René Descartes",
         "description": "In the Third Meditation Descartes finds in himself the idea of God, an infinite and perfect being. The cause of an idea must contain at least as much reality as the idea represents, and he, a finite and imperfect being, could not have produced the idea of the infinite himself. Nor could it come from the senses, since it never presented itself to him through them. Therefore the idea is innate: God placed it in him, like the mark a craftsman stamps on his work, and so God must exist.",
+    },
+    {
+        "name": "Ontological argument",
+        "writing": "Meditations",
+        "philosopher": "René Descartes",
+        "description": "In the Fifth Meditation Descartes argues that existence belongs to the essence of God just as having three angles equal to two right angles belongs to the essence of a triangle. God is by definition a supremely perfect being, and existence is a perfection. Therefore it is no less contradictory to think of God lacking existence than to think of a mountain without a valley. It does not follow that my thought imposes necessity on things, but rather that the necessity of the thing itself, namely of God's existence, determines me to think this way. God therefore necessarily exists.",
     },
     {
         "name": "Will and intellect argument",
@@ -156,6 +210,66 @@ ARGUMENTS = [
         "writing": "A Treatise of Human Nature",
         "philosopher": "David Hume",
         "description": "Some philosophers claim that we are intimately conscious of a self that is simple, identical and continuous over time. But if the idea of the self is real, it must come from some impression, and there is no constant impression of a self. When Hume enters most intimately into what he calls himself, he always stumbles on some particular perception, of heat or cold, light or shade, love or hatred, and never catches himself without a perception. The mind is therefore nothing but a bundle or collection of different perceptions that succeed one another with great rapidity, and the identity we ascribe to it is a fiction produced by the imagination.",
+    },
+    {
+        "name": "Leibniz's complete concept of substance",
+        "writing": "Discourse on Metaphysics",
+        "philosopher": "Gottfried Wilhelm Leibniz",
+        "description": "In every true proposition the predicate is contained in the subject. An individual substance therefore has a concept so complete that it contains every predicate that will ever be true of it: the concept of Alexander the Great includes that he will defeat Darius, even if only God can see this. Each substance is thus like a world apart, unfolding all its states from its own nature, and expressing, from its own point of view, the whole universe. There are therefore many genuine individual substances, each with its own complete concept, and no two substances can be exactly alike.",
+    },
+    {
+        "name": "Leibniz's pre-established harmony",
+        "writing": "Discourse on Metaphysics",
+        "philosopher": "Gottfried Wilhelm Leibniz",
+        "description": "Since every state of a substance follows from its own complete concept, one created substance cannot act causally on another. This also holds for the soul and the body. Their union is not explained by an influence passing from one to the other, nor by God intervening on each occasion, but by a harmony God established from the start: each follows its own laws, and God arranged them so that the states of the soul correspond exactly to the states of the body, like two clocks set to keep perfect time together.",
+    },
+    {
+        "name": "Leibniz's defense of innate ideas",
+        "writing": "New Essays on Human Understanding",
+        "philosopher": "Gottfried Wilhelm Leibniz",
+        "description": "Replying to Locke, Leibniz argues that the senses give only particular instances, and no number of instances can establish the universal and necessary truths of mathematics, logic and metaphysics. Their necessity must come from the mind itself. Innate ideas are not fully formed thoughts we are always conscious of, but inclinations, dispositions and tendencies, like the veins in a block of marble that already outline the shape of Hercules before the sculptor uncovers it. Locke's objection that a truth cannot be in the mind without being perceived fails, because the mind has many small perceptions it is not aware of. To the empiricist slogan that nothing is in the intellect that was not first in the senses, Leibniz adds: except the intellect itself.",
+    },
+    {
+        "name": "Berkeley's argument against abstract ideas",
+        "writing": "A Treatise Concerning the Principles of Human Knowledge",
+        "philosopher": "George Berkeley",
+        "description": "In the Introduction Berkeley attacks the doctrine, held by Locke, that the mind can form abstract general ideas, such as the idea of a triangle that is neither equilateral, isosceles nor scalene, but all and none of these at once. Berkeley finds he cannot frame such an idea, and holds that nobody can, since it is impossible to imagine a quality separated from all others, such as motion without a moving body or extension without colour. A word becomes general not by standing for an abstract idea but by being used as a sign for many particular ideas of the same kind.",
+    },
+    {
+        "name": "Berkeley's critique of primary and secondary qualities",
+        "writing": "A Treatise Concerning the Principles of Human Knowledge",
+        "philosopher": "George Berkeley",
+        "description": "Berkeley argues that Locke's distinction between primary and secondary qualities collapses. It is impossible to conceive of extension, figure or motion without some secondary quality such as colour, so if colours exist only in the mind, so do primary qualities. Moreover, the same arguments from relativity that show secondary qualities to be in the mind apply equally to primary ones: an object looks great from near and small from afar, and its motion seems swift or slow depending on the observer. An idea can be like nothing but another idea, so there is no material substance whose qualities our ideas could resemble.",
+    },
+    {
+        "name": "Berkeley's esse est percipi argument",
+        "writing": "A Treatise Concerning the Principles of Human Knowledge",
+        "philosopher": "George Berkeley",
+        "description": "The objects of human knowledge are ideas, and sensible things such as houses, mountains and rivers are nothing but collections of ideas perceived by sense. Since an idea cannot exist unperceived, the existence of a sensible thing consists in its being perceived: to be is to be perceived. To claim that things exist outside any mind is to rely on the abstraction of existence from perception, which cannot be done. Matter in the philosophers' sense is therefore an empty notion. Things continue to exist when no human perceives them because they are perceived by God, the infinite spirit who produces our ideas of sense in us.",
+    },
+    {
+        "name": "Kant's synthetic a priori argument",
+        "writing": "Critique of Pure Reason",
+        "philosopher": "Immanuel Kant",
+        "description": "Kant distinguishes analytic judgments, whose predicate is contained in the concept of the subject, from synthetic judgments, which extend our knowledge; and a priori knowledge, which is independent of experience and necessary, from a posteriori knowledge, which comes from experience. Hume held that every necessary truth is analytic. But the judgments of mathematics, such as 7 + 5 = 12, and the principles of natural science, such as that every event has a cause, are both synthetic and a priori. The central question of the Critique is how such judgments are possible, and the answer is that they express the forms of intuition (space and time) and the categories of the understanding, which the mind itself contributes to every possible experience.",
+    },
+    {
+        "name": "Kant's Second Analogy",
+        "writing": "Critique of Pure Reason",
+        "philosopher": "Immanuel Kant",
+        "description": "Kant agrees with Hume that the necessity of causal connection cannot be found in experience, but he denies that it is merely a product of habit. Our perceptions are always successive, whether we watch a ship float downstream or scan the parts of a stationary house. We can distinguish an objective succession of events from a merely subjective succession of perceptions only if we judge that the order is necessary, that is, governed by a rule according to which something precedes the event and the event follows from it. The principle that every alteration occurs according to the law of cause and effect is therefore not learned from experience but is a condition of the very possibility of experiencing objective events.",
+    },
+    {
+        "name": "Kant's refutation of idealism",
+        "writing": "Critique of Pure Reason",
+        "philosopher": "Immanuel Kant",
+        "description": "In a section added to the second edition (1787), Kant argues against the problematic idealism of Descartes, which holds that only 'I am' is indubitable and the existence of external things is doubtful, and against the dogmatic idealism of Berkeley. I am conscious of my existence as determined in time, and every determination of time requires something permanent in perception. This permanent thing cannot be within me, since my representations are themselves changing. Therefore the consciousness of my own existence is at the same time an immediate consciousness of the existence of things outside me in space. Inner experience is possible only through outer experience.",
+    },
+    {
+        "name": "Kant's critique of the ontological argument",
+        "writing": "Critique of Pure Reason",
+        "philosopher": "Immanuel Kant",
+        "description": "Kant argues that the ontological argument fails because existence is not a real predicate: it adds nothing to the concept of a thing. A hundred real thalers contain no more than a hundred possible thalers. To say that something exists is not to add a property to its concept but to posit the object with all its properties. If I reject both the subject and the predicate together, as in 'God does not exist', there is no contradiction. Every existential proposition is synthetic, and no analysis of the concept of a supremely perfect being can ever show that such a being exists.",
     },
 ]
 
@@ -234,5 +348,85 @@ CONNECTIONS = [
         "source_arg": "Hume's bundle theory of the self",
         "relation_type": "challenges",
         "target_arg": "Real distinction argument",
+    },
+    {
+        "source_arg": "Leibniz's complete concept of substance",
+        "relation_type": "challenges",
+        "target_arg": "Mind-body parallelism argument",
+    },
+    {
+        "source_arg": "Leibniz's pre-established harmony",
+        "relation_type": "based_on",
+        "target_arg": "Leibniz's complete concept of substance",
+    },
+    {
+        "source_arg": "Leibniz's pre-established harmony",
+        "relation_type": "challenges",
+        "target_arg": "Real distinction argument",
+    },
+    {
+        "source_arg": "Leibniz's defense of innate ideas",
+        "relation_type": "refutes",
+        "target_arg": "Locke's argument against innate ideas",
+    },
+    {
+        "source_arg": "Leibniz's defense of innate ideas",
+        "relation_type": "challenges",
+        "target_arg": "Locke's origin of ideas argument",
+    },
+    {
+        "source_arg": "Berkeley's argument against abstract ideas",
+        "relation_type": "challenges",
+        "target_arg": "Locke's origin of ideas argument",
+    },
+    {
+        "source_arg": "Berkeley's critique of primary and secondary qualities",
+        "relation_type": "refutes",
+        "target_arg": "Locke's primary and secondary qualities argument",
+    },
+    {
+        "source_arg": "Berkeley's esse est percipi argument",
+        "relation_type": "based_on",
+        "target_arg": "Locke's origin of ideas argument",
+    },
+    {
+        "source_arg": "Berkeley's esse est percipi argument",
+        "relation_type": "based_on",
+        "target_arg": "Berkeley's argument against abstract ideas",
+    },
+    {
+        "source_arg": "Berkeley's esse est percipi argument",
+        "relation_type": "based_on",
+        "target_arg": "Berkeley's critique of primary and secondary qualities",
+    },
+    {
+        "source_arg": "Kant's synthetic a priori argument",
+        "relation_type": "refutes",
+        "target_arg": "Hume's fork",
+    },
+    {
+        "source_arg": "Kant's Second Analogy",
+        "relation_type": "based_on",
+        "target_arg": "Kant's synthetic a priori argument",
+    },
+    {
+        "source_arg": "Kant's Second Analogy",
+        "relation_type": "challenges",
+        "target_arg": "Hume's critique of causation",
+    },
+    {
+        "source_arg": "Kant's refutation of idealism",
+        "relation_type": "challenges",
+        "target_arg": "Cogito argument",
+    },
+    {
+        "source_arg": "Kant's refutation of idealism",
+        "relation_type": "challenges",
+        "target_arg": "Berkeley's esse est percipi argument",
+    },
+    {
+        "source_arg": "Kant's critique of the ontological argument",
+        "relation_type": "refutes",
+        "target_arg": "Ontological argument",
     },
 ]

@@ -2,7 +2,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from database import engine
-from models import RELATION_PHRASES, Argument, ArgumentsConnection, Base, Philosopher, Writing
+from models import RELATION_PHRASES, Argument, ArgumentsConnection, Base, Philosopher, RelationType, Writing
 from seed_data import ARGUMENTS, CONNECTIONS, PHILOSOPHERS, WRITINGS
 
 
@@ -40,7 +40,7 @@ def get_or_create_argument(session: Session, name: str, description: str, philos
         return find_argument
 
 
-def get_or_create_connection(session: Session, source_arg: Argument, relation_type: str, target_arg: Argument) -> ArgumentsConnection:
+def get_or_create_connection(session: Session, source_arg: Argument, relation_type: RelationType, target_arg: Argument) -> ArgumentsConnection:
     find_connection = session.scalar(select(ArgumentsConnection).where(ArgumentsConnection.source_arg == source_arg, ArgumentsConnection.relation_type == relation_type, ArgumentsConnection.target_arg == target_arg))
     if find_connection is None:
         arg_connection = ArgumentsConnection(source_arg=source_arg, relation_type=relation_type, target_arg=target_arg)
@@ -69,5 +69,6 @@ if __name__ == "__main__":
             argument = get_or_create_argument(session, name=argument_data["name"], writing=writings_by_title.get(writing_title), philosopher=philosophers_by_name[argument_data["philosopher"]], description=argument_data["description"])
             arguments_by_name[argument.name] = argument
         for connection_data in CONNECTIONS:
-            connection = get_or_create_connection(session, source_arg=arguments_by_name[connection_data["source_arg"]], relation_type=connection_data["relation_type"], target_arg=arguments_by_name[connection_data["target_arg"]])
+            rel_type = RelationType(connection_data["relation_type"])
+            connection = get_or_create_connection(session, source_arg=arguments_by_name[connection_data["source_arg"]], relation_type=rel_type, target_arg=arguments_by_name[connection_data["target_arg"]])
         session.commit()

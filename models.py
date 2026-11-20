@@ -1,9 +1,8 @@
+from enum import Enum
 from typing import Optional
 
-from sqlalchemy import CheckConstraint, ForeignKey, ForeignKeyConstraint, UniqueConstraint
+from sqlalchemy import CheckConstraint, Enum as SQLEnum, ForeignKey, ForeignKeyConstraint, UniqueConstraint
 from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column, relationship
-
-
 
 
 class Base(DeclarativeBase):
@@ -76,10 +75,16 @@ class Writing(Base):
     )
 
 
+class RelationType(Enum):
+    BASED_ON = "based_on"
+    CHALLENGES = "challenges"
+    REFUTES = "refutes"
+
+
 RELATION_PHRASES = {
-    "based_on": "is based on",
-    "challenges": "challenges",
-    "refutes": "refutes",
+    RelationType.BASED_ON: "is based on",
+    RelationType.CHALLENGES: "challenges",
+    RelationType.REFUTES: "refutes",
 }
 
 
@@ -87,14 +92,18 @@ class ArgumentsConnection(Base):
     __tablename__ = "arg_connection"
 
     id: Mapped[int] = mapped_column(primary_key=True)
-    relation_type: Mapped[str]
+    relation_type: Mapped[RelationType] = mapped_column(SQLEnum(
+        RelationType,
+        values_callable=lambda enum_class: [member.value for member in enum_class],
+        name="valid_relation",
+        create_constraint=True,
+    ))
     source_arg_id: Mapped[int] = mapped_column(ForeignKey("argument.id", ondelete="CASCADE"))
     target_arg_id: Mapped[int] = mapped_column(ForeignKey("argument.id", ondelete="CASCADE"))
     target_arg: Mapped["Argument"] = relationship(back_populates="incoming", foreign_keys=[target_arg_id])
     source_arg: Mapped["Argument"] = relationship(back_populates="outgoing", foreign_keys=[source_arg_id])
 
     __table_args__ = (
-        CheckConstraint("relation_type IN ('based_on', 'challenges', 'refutes')", name="valid_relation"),
         CheckConstraint("source_arg_id != target_arg_id", name="no_self_connection"),
         UniqueConstraint("relation_type", "source_arg_id", "target_arg_id", name="unique_arg_relation"),
     )

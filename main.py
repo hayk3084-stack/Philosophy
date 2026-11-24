@@ -26,3 +26,11 @@ SessionDep = Annotated[Session, Depends(get_db)]
 def get_all_philosophers(db: SessionDep):
     stmt = select(Philosopher)
     return db.scalars(stmt).all()
+
+
+@app.get("/philosophers/{philosopher_id}", response_model=PhilosopherSchema)
+def get_philosopher_by_id(philosopher_id: int, db: SessionDep):
+    philosopher = db.get(Philosopher, philosopher_id)
+    if philosopher is None:
+        raise HTTPException(status_code=404, detail="Philosopher not found")
+    return philosopher

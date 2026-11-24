@@ -1,6 +1,9 @@
 from sqlalchemy import create_engine, event
+from sqlalchemy.orm import sessionmaker
+
 
 engine = create_engine("sqlite:///try.db")
+SessionLocal = sessionmaker(bind=engine)
 
 
 @event.listens_for(engine, "connect")

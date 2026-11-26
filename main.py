@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from database import SessionLocal
 from models import Philosopher
-from schemas import PhilosopherSchema
+from schemas import PhilosopherSchema, PhilosopherWithArgumentsSchema
 
 app = FastAPI()
 
@@ -28,7 +28,7 @@ def get_all_philosophers(db: SessionDep):
     return db.scalars(stmt).all()
 
 
-@app.get("/philosophers/{philosopher_id}", response_model=PhilosopherSchema)
+@app.get("/philosophers/{philosopher_id}", response_model=PhilosopherWithArgumentsSchema)
 def get_philosopher_by_id(philosopher_id: int, db: SessionDep):
     philosopher = db.get(Philosopher, philosopher_id)
     if philosopher is None:

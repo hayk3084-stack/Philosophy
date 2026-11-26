@@ -5,8 +5,8 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from database import SessionLocal
-from models import Philosopher
-from schemas import PhilosopherSchema, PhilosopherWithArgumentsSchema
+from models import Argument, Philosopher
+from schemas import ArgumentWithConnectionsSchema, PhilosopherSchema, PhilosopherWithArgumentsSchema
 
 app = FastAPI()
 
@@ -34,3 +34,11 @@ def get_philosopher_by_id(philosopher_id: int, db: SessionDep):
     if philosopher is None:
         raise HTTPException(status_code=404, detail="Philosopher not found")
     return philosopher
+
+
+@app.get("/arguments/{argument_id}", response_model=ArgumentWithConnectionsSchema)
+def get_argument_relations(argument_id: int, db: SessionDep):
+    argument = db.get(Argument, argument_id)
+    if argument is None:
+        raise HTTPException(status_code=404, detail="Argument not found")
+    return argument
